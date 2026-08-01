@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bionote — Industrial Monolith</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="rain-container">
+        <div class="drop" style="left:2%; animation-duration:4.5s; animation-delay:0s;">A</div>
+        <div class="drop" style="left:7%; animation-duration:5.2s; animation-delay:2.1s;">7</div>
+        <div class="drop" style="left:11%; animation-duration:3.8s; animation-delay:0.6s;">+</div>
+        <div class="drop" style="left:15%; animation-duration:6.1s; animation-delay:3.5s;">Z</div>
+        <div class="drop" style="left:19%; animation-duration:2.9s; animation-delay:4.8s;">K</div>
+        <div class="drop" style="left:23%; animation-duration:4s; animation-delay:1.2s;">{</div>
+        <div class="drop" style="left:27%; animation-duration:5.5s; animation-delay:0.4s;">}</div>
+        <div class="drop" style="left:31%; animation-duration:3.2s; animation-delay:2.9s;">9</div>
+        <div class="drop" style="left:35%; animation-duration:4.8s; animation-delay:1.7s;">/</div>
+        <div class="drop" style="left:39%; animation-duration:3.5s; animation-delay:0.9s;">]</div>
+        <div class="drop" style="left:43%; animation-duration:5.9s; animation-delay:3.2s;">X</div>
+        <div class="drop" style="left:47%; animation-duration:4.2s; animation-delay:1.5s;">M</div>
+        <div class="drop" style="left:51%; animation-duration:6.5s; animation-delay:0s;">3</div>
+        <div class="drop" style="left:55%; animation-duration:3.9s; animation-delay:2.4s;">></div>
+        <div class="drop" style="left:59%; animation-duration:5.1s; animation-delay:3.9s;">R</div>
+        <div class="drop" style="left:63%; animation-duration:4.6s; animation-delay:0.8s;">*</div>
+        <div class="drop" style="left:67%; animation-duration:3.3s; animation-delay:2.2s;"><</div>
+        <div class="drop" style="left:71%; animation-duration:5.8s; animation-delay:1.1s;">V</div>
+        <div class="drop" style="left:75%; animation-duration:4.1s; animation-delay:3.6s;">-</div>
+        <div class="drop" style="left:79%; animation-duration:3.6s; animation-delay:0.3s;">D</div>
+        <div class="drop" style="left:83%; animation-duration:5.4s; animation-delay:2.8s;">N</div>
+        <div class="drop" style="left:87%; animation-duration:4.3s; animation-delay:1.9s;">=</div>
+        <div class="drop" style="left:91%; animation-duration:3.1s; animation-delay:4.1s;">P</div>
+        <div class="drop" style="left:95%; animation-duration:6.2s; animation-delay:0.5s;">Q</div>
+        <div class="drop" style="left:98%; animation-duration:4.7s; animation-delay:2.5s;">[</div>
+    </div>
+
+    <div class="scroll-container">
+
+        <!-- ====== Scene 1 — Bionote (Hero) ====== -->
+        <section class="scene hero-scene" id="scene-bionote">
+            <div class="hero-image">
+                <img src="assets/front.png" alt="Joshua Purificacion">
+            </div>
+            <div class="hero-text">
+                <h1 class="hero-title">BIONOTE</h1>
+                <p class="hero-name">Joshua Purificacion</p>
+                <p class="hero-subtitle">Computer Engineering Student</p>
+                <p class="hero-tagline">Bridging the gap between hardware and software through practical, innovative solutions.</p>
+            </div>
+        </section>
+
+        <!-- ====== Scene 2 — About (Hero) ====== -->
+        <section class="scene hero-scene" id="scene-about">
+            <div class="hero-image">
+                <img src="assets/back.png" alt="Workspace">
+            </div>
+            <div class="hero-text">
+                <h1 class="hero-title">ABOUT</h1>
+                <p class="hero-body">I am a Computer Engineering student at the University of the East with a strong passion for bridging the gap between hardware and software. My technical journey revolves around creating practical, innovative solutions, whether that means assembling microcontroller prototypes and programming autonomous Arduino robots, or writing clean, efficient code for mobile applications.</p>
+            </div>
+        </section>
+
+        <!-- ====== Scene 3 — Gallery ====== -->
+        <section class="scene" id="scene-gallery">
+            <p class="scene-label">Projects</p>
+            <div class="scene-body scene-body--gallery">
+                <div class="gallery-left">
+                    <div class="gallery-item">
+                        <img src="assets/project1.jpg" alt="Hope Harbor">
+                        <span class="gallery-label">Hope Harbor</span>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/project2.jpg" alt="AboutMe">
+                        <span class="gallery-label">AboutMe</span>
+                    </div>
+                </div>
+                <div class="gallery-right">
+                    <div class="gallery-item">
+                        <img src="assets/project3.jpg" alt="OmniSense">
+                        <span class="gallery-label">OmniSense</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== Scene 4 — Connect ====== -->
+        <section class="scene" id="scene-connect">
+            <div class="scene-body">
+                <div class="scene-text">
+                    <p class="scene-label">Connect</p>
+                    <p class="signoff">Thanks for stopping by — let's build something.</p>
+                    <div class="socials-links">
+                        <a href="https://www.facebook.com/joshua.purificacion.33" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook"></i>
+                            <span class="social-label">Facebook</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@joshcpurificacion" class="social-link" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                            <span class="social-label">TikTok</span>
+                        </a>
+                        <a href="https://github.com/JoshuaPurificacion" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                            <span class="social-label">GitHub</span>
+                        </a>
+                        <a href="mailto:purificacionjosh@gmail.com" class="social-link" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                            <span class="social-label">Email</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            var container = document.querySelector('.scroll-container');
+            var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
+            if (!container || scenes.length === 0) return;
+
+            var currentIndex = 0;
+            var isScrolling = false;
+            var touchStartY = 0;
+            var touchStartX = 0;
+            var lockTimeout = null;
+
+            var COOLDOWN_MS = 900;
+
+            function getCurrentIndex() {
+                var scrollTop = container.scrollTop;
+                var closest = 0;
+                var closestDist = Infinity;
+                scenes.forEach(function (scene, i) {
+                    var top = scene.offsetTop;
+                    var dist = Math.abs(top - scrollTop);
+                    if (dist < closestDist) {
+                        closestDist = dist;
+                        closest = i;
+                    }
+                });
+                return closest;
+            }
+
+            function goTo(index) {
+                if (index < 0 || index >= scenes.length) return;
+                if (index === currentIndex) return;
+                if (isScrolling) return;
+
+                currentIndex = index;
+                isScrolling = true;
+
+                scenes[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                clearTimeout(lockTimeout);
+                lockTimeout = setTimeout(function () {
+                    isScrolling = false;
+                }, COOLDOWN_MS);
+            }
+
+            function goNext() {
+                goTo(currentIndex + 1);
+            }
+
+            function goPrev() {
+                goTo(currentIndex - 1);
+            }
+
+            // Wheel — one page per gesture
+            container.addEventListener('wheel', function (e) {
+                e.preventDefault();
+                if (isScrolling) return;
+
+                var delta = e.deltaY;
+                if (Math.abs(delta) < 5) return;
+
+                if (delta > 0) {
+                    goNext();
+                } else {
+                    goPrev();
+                }
+            }, { passive: false });
+
+            // Keyboard — PageDown/PageUp, arrows, space
+            document.addEventListener('keydown', function (e) {
+                if (isScrolling) return;
+
+                switch (e.key) {
+                    case 'PageDown':
+                    case 'ArrowDown':
+                    case ' ':
+                        e.preventDefault();
+                        goNext();
+                        break;
+                    case 'PageUp':
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        goPrev();
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        goTo(0);
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        goTo(scenes.length - 1);
+                        break;
+                }
+            });
+
+            // Touch — swipe up/down to change page
+            container.addEventListener('touchstart', function (e) {
+                touchStartY = e.touches[0].clientY;
+                touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+
+            container.addEventListener('touchend', function (e) {
+                if (isScrolling) return;
+
+                var touchEndY = e.changedTouches[0].clientY;
+                var touchEndX = e.changedTouches[0].clientX;
+
+                var deltaY = touchStartY - touchEndY;
+                var deltaX = touchStartX - touchEndX;
+
+                // Only trigger on a vertical swipe (ignore horizontal swipes)
+                if (Math.abs(deltaY) < 50 || Math.abs(deltaY) < Math.abs(deltaX)) return;
+
+                if (deltaY > 0) {
+                    goNext();
+                } else {
+                    goPrev();
+                }
+            }, { passive: true });
+
+            // Keep currentIndex in sync if the user scrolls via other means
+            container.addEventListener('scroll', function () {
+                if (isScrolling) return;
+                currentIndex = getCurrentIndex();
+            }, { passive: true });
+
+            // Recalculate on resize
+            window.addEventListener('resize', function () {
+                currentIndex = getCurrentIndex();
+            });
+        })();
+    </script>
+</body>
+</html>
