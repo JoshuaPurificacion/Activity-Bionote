@@ -1,0 +1,517 @@
+/* =============================================
+   Projects
+   ============================================= */
+#projects {
+    position: relative;
+}
+
+#projects .section-inner {
+    z-index: 2;
+    gap: 0.6rem;
+    /* Trim internal gap so the card grid uses more of the 100vh
+       and matches the breathing room of About/Skills. */
+}
+
+/* Large faint ghost section number — same treatment as
+   .about-ghost and .skills-ghost */
+.projects-ghost {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 18rem;
+    font-weight: 600;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.03);
+    pointer-events: none;
+    user-select: none;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    flex: 1 1 auto;
+    align-self: stretch;
+    align-content: stretch;
+}
+
+/* The card is now a <label> wrapping the whole clickable surface, so
+   give it the same flex/column treatment as before. */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    height: 100%;
+    min-height: 0;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.project-card:hover {
+    border-color: var(--accent);
+    box-shadow:
+        0 0 12px rgba(0, 229, 255, 0.25),
+        0 0 28px rgba(0, 229, 255, 0.1);
+    transform: translateY(-4px);
+}
+
+/* Keyboard focus on the card (when it's a label).
+   Browsers don't show :focus on labels by default, but :focus-within
+   catches the toggled checkbox being focused on click. */
+.project-card:focus-within {
+    border-color: var(--accent);
+    box-shadow:
+        0 0 12px rgba(0, 229, 255, 0.25),
+        0 0 28px rgba(0, 229, 255, 0.1);
+    transform: translateY(-4px);
+}
+
+.project-card-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    overflow: hidden;
+    background: #111;
+    flex: 1 1 auto;
+}
+
+.project-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(100%);
+}
+
+.project-card-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0.75rem 1rem 0.3rem;
+    letter-spacing: 0.02em;
+}
+
+.project-card-desc {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #a0a0a0;
+    line-height: 1.5;
+    margin: 0 1rem 1rem;
+}
+
+/* =============================================
+   Project modals (pure CSS toggle)
+   ============================================= */
+
+/* The hidden checkbox/radio inputs themselves — visually hidden
+   but still focusable for keyboard users. */
+.modal-toggle,
+.carousel-radio {
+    /* keep them on the page so sibling selectors can reach them */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    opacity: 0;
+}
+
+/* Default state: every modal is hidden. */
+.project-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+/* Sibling selector pattern: when the matching modal checkbox is
+   checked, show the modal. Each project has its own checkbox and
+   its own modal sibling. */
+#modal-hopeharbor:checked ~ .modal-hopeharbor,
+#modal-thisisme:checked   ~ .modal-thisisme,
+#modal-omnisense:checked  ~ .modal-omnisense {
+    display: flex;
+}
+
+.project-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    cursor: pointer;
+    /* Sits behind the panel. */
+    z-index: 0;
+}
+
+.project-modal-panel {
+    position: relative;
+    z-index: 1;
+    background: #111;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    max-width: 760px;
+    width: 100%;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    box-shadow:
+        0 0 24px rgba(0, 229, 255, 0.25),
+        0 0 60px rgba(0, 229, 255, 0.12);
+    padding: 1.5rem;
+    /* Internal stack: carousel on top, body below. */
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    /* Hides scrollbar visually but keeps scroll behaviour. */
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) #1a1a1a;
+}
+
+.project-modal-panel::-webkit-scrollbar {
+    width: 6px;
+}
+.project-modal-panel::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+.project-modal-panel::-webkit-scrollbar-thumb {
+    background-color: var(--accent);
+    border-radius: 3px;
+}
+
+.project-modal-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    z-index: 3;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #a0a0a0;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.project-modal-close:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.project-modal-close:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    color: var(--accent);
+}
+
+.project-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.project-modal-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+}
+
+.project-modal-desc {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: #a0a0a0;
+    line-height: 1.7;
+}
+
+/* =============================================
+   Carousel (pure CSS, radio-button pattern)
+   ============================================= */
+
+.carousel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+}
+
+/* Radios live inside .carousel as direct older siblings of
+   .carousel-stage. Keep them visually hidden but laid out so they
+   don't take up flex space. */
+.carousel > .carousel-radio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.carousel-stage {
+    position: relative;
+    width: 100%;
+    /* Visual frame for the carousel, matches the modal panel width. */
+    aspect-ratio: 16 / 9;
+    background: #0a0a0a;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #0a0a0a;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.7rem;
+    color: #a0a0a0;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+    padding: 1.25rem 0.5rem 0.4rem;
+    margin: 0;
+}
+
+/* ---- Show slide N when its radio is checked ----
+   Each radio is a direct older sibling of .carousel-stage (both
+   live as children of .carousel), so this selector reaches it. */
+
+#hopeharbor-slide-1:checked ~ .carousel-stage .slide-hopeharbor-1,
+#hopeharbor-slide-2:checked ~ .carousel-stage .slide-hopeharbor-2,
+#hopeharbor-slide-3:checked ~ .carousel-stage .slide-hopeharbor-3,
+#hopeharbor-slide-4:checked ~ .carousel-stage .slide-hopeharbor-4 {
+    display: flex;
+}
+
+#thisisme-slide-1:checked ~ .carousel-stage .slide-thisisme-1,
+#thisisme-slide-2:checked ~ .carousel-stage .slide-thisisme-2,
+#thisisme-slide-3:checked ~ .carousel-stage .slide-thisisme-3,
+#thisisme-slide-4:checked ~ .carousel-stage .slide-thisisme-4 {
+    display: flex;
+}
+
+#omnisense-slide-1:checked ~ .carousel-stage .slide-omnisense-1,
+#omnisense-slide-2:checked ~ .carousel-stage .slide-omnisense-2 {
+    display: flex;
+}
+
+/* ---- Prev/Next arrows ---- */
+
+.carousel-arrow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: #a0a0a0;
+    background: rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease;
+    z-index: 2;
+    user-select: none;
+}
+
+.carousel-prev {
+    left: 0;
+}
+
+.carousel-next {
+    right: 0;
+}
+
+.carousel-arrow:hover {
+    color: var(--accent);
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.carousel-arrow:focus-visible {
+    color: var(--accent);
+    background: rgba(0, 0, 0, 0.6);
+    outline: 2px solid var(--accent);
+    outline-offset: -4px;
+}
+
+/* ---- Dot indicators ---- */
+
+.carousel-dots {
+    position: absolute;
+    bottom: 0.4rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.45rem;
+    z-index: 3;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3a3a3a;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.carousel-dot:hover {
+    background: #707070;
+}
+
+.carousel-dot:focus-visible {
+    border-color: var(--accent);
+    outline: none;
+}
+
+/* Active dot — when its slide's radio is checked, the matching dot
+   lights up. Each per-project dot class (carousel-dot-{project}-{N})
+   is targeted from the same sibling-scoped :checked rule. */
+#hopeharbor-slide-1:checked ~ .carousel-stage .carousel-dots .carousel-dot-hopeharbor-1,
+#hopeharbor-slide-2:checked ~ .carousel-stage .carousel-dots .carousel-dot-hopeharbor-2,
+#hopeharbor-slide-3:checked ~ .carousel-stage .carousel-dots .carousel-dot-hopeharbor-3,
+#hopeharbor-slide-4:checked ~ .carousel-stage .carousel-dots .carousel-dot-hopeharbor-4,
+#thisisme-slide-1:checked   ~ .carousel-stage .carousel-dots .carousel-dot-thisisme-1,
+#thisisme-slide-2:checked   ~ .carousel-stage .carousel-dots .carousel-dot-thisisme-2,
+#thisisme-slide-3:checked   ~ .carousel-stage .carousel-dots .carousel-dot-thisisme-3,
+#thisisme-slide-4:checked   ~ .carousel-stage .carousel-dots .carousel-dot-thisisme-4,
+#omnisense-slide-1:checked  ~ .carousel-stage .carousel-dots .carousel-dot-omnisense-1,
+#omnisense-slide-2:checked  ~ .carousel-stage .carousel-dots .carousel-dot-omnisense-2 {
+    background: var(--accent);
+    transform: scale(1.25);
+    box-shadow: 0 0 6px rgba(0, 229, 255, 0.7);
+}
+
+/* =============================================
+   Responsive
+   ============================================= */
+@media (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        margin-top: 0.4rem;
+    }
+
+    .project-card-title {
+        font-size: 0.95rem;
+    }
+
+    .project-card-desc {
+        font-size: 0.75rem;
+    }
+
+    .projects-ghost {
+        font-size: 10rem;
+    }
+
+    /* Modal — leave more breathing room at the edges on small
+       screens, and let the panel scroll vertically inside. */
+    .project-modal {
+        padding: 0.75rem;
+    }
+
+    .project-modal-panel {
+        padding: 1rem;
+        max-height: calc(100vh - 1.5rem);
+    }
+
+    .project-modal-title {
+        font-size: 1.3rem;
+    }
+
+    .project-modal-desc {
+        font-size: 0.85rem;
+    }
+
+    .project-modal-close {
+        top: 0.35rem;
+        right: 0.5rem;
+    }
+
+    /* Carousel */
+    .carousel-stage {
+        aspect-ratio: 4 / 3;
+    }
+
+    .carousel-arrow {
+        width: 36px;
+        font-size: 1.1rem;
+    }
+
+    .carousel-caption {
+        font-size: 0.6rem;
+        padding-top: 1rem;
+    }
+
+    .carousel-dots {
+        bottom: 0.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-ghost {
+        font-size: 7rem;
+    }
+
+    .project-modal-panel {
+        padding: 0.75rem;
+    }
+
+    .carousel-stage {
+        aspect-ratio: 1 / 1;
+    }
+
+    .carousel-arrow {
+        width: 32px;
+        font-size: 1rem;
+    }
+}

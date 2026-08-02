@@ -1,0 +1,175 @@
+/* =============================================
+   About
+   ============================================= */
+#about {
+    position: relative;
+}
+
+#about .section-inner {
+    max-width: 640px;
+    margin-left: 0;
+    z-index: 2;
+    gap: 0.9rem;
+}
+
+/* Large ghost section number in the background */
+.about-ghost {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 18rem;
+    font-weight: 600;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.03);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Pull-quote — standalone accent line between divider and body */
+.about-pullquote {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1.4;
+    max-width: 560px;
+    margin-top: 0.5rem;
+}
+
+/* Stat/fact chips — reuse .skill-tag visual style */
+.about-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+/* Right column: portrait + glow + ring
+   Mirrors the hero image treatment but slightly smaller and
+   softer so it reads as an echo of the motif, not a duplicate.
+   Pinned to the bottom-right of the About viewport. */
+.about-image-column {
+    position: absolute;
+    right: 4vw;
+    bottom: 0;
+    height: 80%;
+    width: auto;
+    max-width: 34vw;
+    /* Matches the natural ratio of assets/back.png (375x665)
+       so the image is shown in full, never cropped. */
+    aspect-ratio: 375 / 665;
+    z-index: 1;
+}
+
+.about-portrait {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+}
+
+.about-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center top;
+    display: block;
+    filter: grayscale(100%);
+}
+
+.about-glow {
+    position: absolute;
+    top: 10%;
+    left: -25%;
+    width: 140%;
+    height: 140%;
+    z-index: 1;
+    background: radial-gradient(
+        circle at center,
+        rgba(0, 229, 255, 0.35) 0%,
+        rgba(0, 229, 255, 0.15) 35%,
+        rgba(0, 229, 255, 0) 70%
+    );
+    filter: blur(40px);
+    pointer-events: none;
+}
+
+.about-ring {
+    position: absolute;
+    top: -10%;
+    right: -20%;
+    width: 130%;
+    height: 130%;
+    z-index: 2;
+    border: 1px solid rgba(0, 229, 255, 0.12);
+    border-radius: 50%;
+    border-top-color: rgba(0, 229, 255, 0.2);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+/* =============================================
+   Responsive
+   ============================================= */
+@media (max-width: 768px) {
+    /* About — image drops back into normal flow, ghost number,
+       pull-quote, and chips scale down for narrow screens. */
+    #about .section-inner {
+        align-items: center;
+        text-align: center;
+        max-width: 100%;
+        margin-left: auto;
+    }
+
+    .about-ghost {
+        font-size: 10rem;
+    }
+
+    .about-pullquote {
+        font-size: 1.1rem;
+    }
+
+    .about-chips {
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .about-image-column {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        height: auto;
+        width: 60%;
+        max-width: 220px;
+        margin: 0 auto;
+        z-index: 1;
+    }
+
+    .about-glow {
+        top: 5%;
+        left: -15%;
+        width: 130%;
+        height: 130%;
+        filter: blur(30px);
+    }
+
+    .about-ring {
+        top: -8%;
+        right: -15%;
+        width: 120%;
+        height: 120%;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-ghost {
+        font-size: 7rem;
+    }
+}

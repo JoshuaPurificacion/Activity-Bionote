@@ -1,0 +1,418 @@
+/* =============================================
+   Hero
+   ============================================= */
+#hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: calc(var(--nav-height) + 2rem) 8vw 0;
+}
+
+.hero-column {
+    flex: 1 1 55%;
+    max-width: 700px;
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.hero-eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+}
+
+.hero-headline {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 0.9;
+    margin: 0;
+}
+
+.hero-divider {
+    width: 80px;
+    height: 3px;
+    border: none;
+    background: var(--accent);
+    margin: 0;
+}
+
+.hero-name {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+.hero-subtitle {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.hero-tagline {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #a0a0a0;
+    line-height: 1.6;
+    max-width: 520px;
+}
+
+/* Buttons */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    padding: 0.85rem 1.5rem;
+    border-radius: 4px;
+    transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent) 0%, #00b8cc 100%);
+    color: #0a0a0a;
+    border: 1px solid var(--accent);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #00b8cc 0%, var(--accent) 100%);
+    color: #0a0a0a;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #3a3a3a;
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Socials */
+.hero-socials {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.hero-socials .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+    color: #a0a0a0;
+    text-decoration: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-socials .social-link i {
+    font-size: 1.1rem;
+    color: var(--accent);
+}
+
+.hero-socials .social-link:hover {
+    color: #ffffff;
+    border-color: rgba(0, 229, 255, 0.3);
+}
+
+/* Right column: portrait + glow + arcs
+   Pinned to the bottom-right of the hero viewport so the
+   portrait's bottom edge sits flush against the very
+   bottom of the screen with no crop line or gap. */
+.hero-image-column {
+    position: absolute;
+    right: 4vw;
+    bottom: 0;
+    height: 92%;
+    width: auto;
+    max-width: 42vw;
+    /* Matches the natural ratio of assets/front.png (941x1671)
+       so the image is shown in full, never cropped. */
+    aspect-ratio: 941 / 1671;
+}
+
+.hero-portrait {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+}
+
+.hero-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center top;
+    display: block;
+    filter: grayscale(100%);
+}
+
+.hero-glow {
+    position: absolute;
+    top: 10%;
+    left: -25%;
+    width: 140%;
+    height: 140%;
+    z-index: 1;
+    background: radial-gradient(
+        circle at center,
+        rgba(0, 229, 255, 0.55) 0%,
+        rgba(0, 229, 255, 0.25) 35%,
+        rgba(0, 229, 255, 0) 70%
+    );
+    filter: blur(40px);
+    pointer-events: none;
+}
+
+.hero-ring {
+    position: absolute;
+    border: 1px solid rgba(0, 229, 255, 0.18);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.hero-ring--outer {
+    top: -10%;
+    right: -20%;
+    width: 130%;
+    height: 130%;
+    z-index: 2;
+    border-top-color: rgba(0, 229, 255, 0.3);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    transform: rotate(45deg);
+}
+
+.hero-ring--inner {
+    bottom: -8%;
+    left: -15%;
+    width: 90%;
+    height: 90%;
+    z-index: 2;
+    border-bottom-color: rgba(0, 229, 255, 0.25);
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    transform: rotate(-30deg);
+}
+
+/* Floating info card */
+.hero-floating-card {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    transform: translateX(-30%);
+    z-index: 4;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    box-shadow:
+        0 0 12px rgba(0, 229, 255, 0.35),
+        0 0 28px rgba(0, 229, 255, 0.15);
+    min-width: 180px;
+}
+
+.hero-floating-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.hero-floating-card-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px rgba(0, 229, 255, 0.8);
+    flex-shrink: 0;
+}
+
+.hero-floating-card-label {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+}
+
+.hero-floating-card-text {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #a0a0a0;
+    line-height: 1.4;
+}
+
+/* =============================================
+   Responsive
+   ============================================= */
+@media (max-width: 768px) {
+    /* Hero — stack, image drops back into normal flow so
+       the absolute/pinned-to-bottom trick doesn't fight the
+       stacked layout on small screens. */
+    #hero {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: calc(var(--nav-height) + 1.25rem) 6vw 1rem;
+        gap: 1.25rem;
+    }
+
+    .hero-column {
+        flex: 0 0 auto;
+        max-width: 100%;
+        align-items: center;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .hero-headline {
+        font-size: clamp(2.75rem, 13vw, 4rem);
+    }
+
+    .hero-name {
+        font-size: 1.1rem;
+    }
+
+    .hero-tagline {
+        font-size: 0.85rem;
+    }
+
+    .hero-buttons {
+        gap: 0.6rem;
+        justify-content: center;
+    }
+
+    .btn {
+        padding: 0.65rem 1rem;
+        font-size: 0.7rem;
+    }
+
+    .hero-socials {
+        justify-content: center;
+    }
+
+    /* Image column — back into normal flow, centered, fills
+       remaining vertical space at the bottom of the screen. */
+    .hero-image-column {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        flex: 1 1 auto;
+        height: auto;
+        width: 60%;
+        max-width: 220px;
+        margin: 0 auto;
+        align-self: flex-end;
+    }
+
+    .hero-glow {
+        top: 5%;
+        left: -15%;
+        width: 130%;
+        height: 130%;
+        filter: blur(30px);
+    }
+
+    .hero-ring--outer {
+        top: -8%;
+        right: -15%;
+        width: 120%;
+        height: 120%;
+    }
+
+    .hero-ring--inner {
+        bottom: -6%;
+        left: -10%;
+        width: 85%;
+        height: 85%;
+    }
+
+    /* Floating card — repositioned to top-center of the
+       image so it never overflows the viewport edge on
+       small screens. */
+    .hero-floating-card {
+        bottom: auto;
+        top: 8%;
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 0;
+        width: 80%;
+        max-width: 220px;
+        padding: 0.6rem 0.75rem;
+    }
+
+    .hero-floating-card-label {
+        font-size: 0.85rem;
+    }
+
+    .hero-floating-card-text {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-headline {
+        font-size: 2.75rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .btn {
+        text-align: center;
+    }
+
+    .hero-image-column {
+        max-width: 260px;
+    }
+
+    .hero-floating-card {
+        width: 80%;
+    }
+}

@@ -1,0 +1,155 @@
+/* =============================================
+   Reset
+   ============================================= */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* =============================================
+   Global
+   ============================================= */
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    height: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Edge */
+}
+
+body {
+    background: #0a0a0a;
+    color: #d0d0d0;
+    font-family: "Space Grotesk", sans-serif;
+    line-height: 1.5;
+}
+
+/* =============================================
+   Accent + layout tokens
+   ============================================= */
+:root {
+    --accent: #00E5FF;
+    --nav-height: 64px;
+}
+
+/* =============================================
+   Full-screen paged sections
+   Each section fills exactly one viewport and
+   snaps into place on scroll.
+   ============================================= */
+#hero,
+#about,
+#skills,
+#projects,
+#contact {
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    overflow: hidden;
+}
+
+/* =============================================
+   Scroll offset so fixed nav doesn't cover anchors
+   ============================================= */
+#hero,
+#about,
+#skills,
+#projects,
+#contact {
+    scroll-margin-top: var(--nav-height);
+}
+
+/* =============================================
+   Sections (about, skills, projects, contact)
+   Shared skeleton — section-specific rules live in
+   their own files (about.css, skills.css, etc.)
+   ============================================= */
+.section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: calc(var(--nav-height) + 1rem) 8vw 2rem;
+    background: #0a0a0a;
+}
+
+.section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-height: 100%;
+}
+
+.section-eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+}
+
+.section-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin: 0;
+}
+
+.section-divider {
+    width: 80px;
+    height: 3px;
+    border: none;
+    background: var(--accent);
+    margin: 0;
+}
+
+.section-body {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #a0a0a0;
+    line-height: 1.7;
+    max-width: 720px;
+    margin-top: 0.5rem;
+}
+
+/* =============================================
+   Responsive — shared section skeleton
+   ============================================= */
+@media (max-width: 768px) {
+    .section {
+        padding: calc(var(--nav-height) + 1rem) 6vw 1.5rem;
+    }
+
+    .section-inner {
+        align-items: center;
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: clamp(1.75rem, 8vw, 2.25rem);
+    }
+
+    .section-body {
+        font-size: 0.85rem;
+    }
+
+    .section-divider {
+        width: 60px;
+    }
+}

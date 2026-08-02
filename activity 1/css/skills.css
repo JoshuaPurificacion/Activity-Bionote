@@ -1,0 +1,145 @@
+/* =============================================
+   Skills
+   ============================================= */
+#skills {
+    position: relative;
+}
+
+#skills .section-inner {
+    z-index: 2;
+    gap: 0.8rem;
+}
+
+/* Large ghost section number — same treatment as .about-ghost */
+.skills-ghost {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 18rem;
+    font-weight: 600;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.03);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Decorative SVG circuit trace — right side, behind content */
+.skills-circuit {
+    position: absolute;
+    right: 4vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(200px, 28vw, 380px);
+    height: auto;
+    opacity: 0.10;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Grouped category layout — 2×2 grid on desktop so all four
+   groups fit comfortably within the 100vh scroll-snap section. */
+.skills-categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 3rem;
+    margin-top: 0.75rem;
+    width: 100%;
+    max-width: 860px;
+    position: relative;
+    z-index: 2;
+}
+
+.skills-category {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+/* Category subheading — muted, monospace, uppercase, small.
+   Intentionally NOT in accent colour so it sits clearly below
+   the main section eyebrow in visual hierarchy. */
+.skills-category-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #505050;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+}
+
+/* Tag row — wraps naturally, matches old .skills-grid spacing */
+.skills-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+/* Icon inside each skill tag */
+.skill-tag-icon {
+    font-size: 0.7rem;
+    color: var(--accent);
+    margin-right: 0.45rem;
+    opacity: 0.8;
+}
+
+.skill-tag {
+    display: inline-flex;
+    align-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1rem;
+    border: 1px solid #2a2a2a;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.skill-tag:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(0, 229, 255, 0.05);
+}
+
+/* =============================================
+   Responsive
+   ============================================= */
+@media (max-width: 768px) {
+    /* Hide circuit SVG on narrow viewports — it would
+       overlap the stacked tag content on small screens */
+    .skills-circuit {
+        display: none;
+    }
+
+    .skills-ghost {
+        font-size: 10rem;
+    }
+
+    .skills-categories {
+        grid-template-columns: 1fr; /* single column stack on mobile */
+        gap: 0.85rem;
+        margin-top: 0.5rem;
+        max-width: 100%;
+    }
+
+    .skills-category-label {
+        font-size: 0.6rem;
+    }
+
+    .skills-tag-row {
+        gap: 0.45rem;
+        justify-content: center;
+    }
+
+    .skill-tag {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.7rem;
+    }
+}
